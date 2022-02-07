@@ -127,4 +127,11 @@ deploy:
     [2] add the configuration lines into ~/.homeassistant/configuration.yaml 
     [3] run hass to start the ha-core
 
+    the ha-core hash: 
+        commit b6f432645d7bc6b4947a20afa28647eb1515e4f8 (HEAD -> master, tag: 2021.12.9, origin/master)
+        Merge: cf84ba1da1 25b07b07d4
+        Author: Paulus Schoutsen <balloob@gmail.com>
+        Date:   Mon Jan 10 17:26:09 2022 -0800
+            Merge pull request #63867 from home-assistant/rc
+
 
