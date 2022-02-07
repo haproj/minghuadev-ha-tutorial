@@ -1,0 +1,73 @@
+
+based on bootstrap script:
+
+  reference: 
+
+    pip install tox tox-pip-version colorlog pre-commit $(grep mypy requirements_test.txt) $(grep stdlib-list requirements_test.txt) $(grep tqdm requirements_test.txt) $(grep pipdeptree requirements_test.txt) $(grep awesomeversion requirements.txt) --constraint homeassistant/package_constraints.txt
+
+
+  actual command: 
+    pip install tox tox-pip-version colorlog pre-commit \
+        mypy==0.910 stdlib-list==0.7.0 tqdm==4.49.0 pipdeptree==2.2.0 awesomeversion==21.11.0 \
+        --constraint homeassistant/package_constraints.txt 
+
+    Ignoring backports.zoneinfo: markers 'python_version < "3.9"' don't match your environment
+    Requirement already satisfied: awesomeversion==21.11.0 in /home/ha-srv/penv39/lib/python3.9/site-packages (from -c homeassistant/package_constraints.txt (line 11)) (21.11.0)
+    Collecting tox
+      Downloading tox-3.24.5-py2.py3-none-any.whl (85 kB)
+    Collecting tox-pip-version
+      Downloading tox-pip-version-0.0.7.tar.gz (8.4 kB)
+    Collecting colorlog
+      Downloading colorlog-6.6.0-py2.py3-none-any.whl (11 kB)
+    Collecting pre-commit
+      Downloading pre_commit-2.17.0-py2.py3-none-any.whl (195 kB)
+    Collecting mypy==0.910
+      Downloading mypy-0.910-cp39-cp39-manylinux2010_x86_64.whl (23.2 MB)
+    Collecting stdlib-list==0.7.0
+      Downloading stdlib_list-0.7.0-py3-none-any.whl (60 kB)
+    Collecting tqdm==4.49.0
+      Downloading tqdm-4.49.0-py2.py3-none-any.whl (69 kB)
+    Collecting pipdeptree==2.2.0
+      Downloading pipdeptree-2.2.0-py3-none-any.whl (21 kB)
+    Collecting py>=1.4.17
+      Downloading py-1.11.0-py2.py3-none-any.whl (98 kB)
+    Collecting filelock>=3.0.0
+      Downloading filelock-3.4.2-py3-none-any.whl (9.9 kB)
+    Requirement already satisfied: six>=1.14.0 in /home/ha-srv/penv39/lib/python3.9/site-packages (from tox) (1.16.0)
+    Collecting packaging>=14
+      Downloading packaging-21.3-py3-none-any.whl (40 kB)
+    Collecting pluggy>=0.12.0
+      Downloading pluggy-1.0.0-py2.py3-none-any.whl (13 kB)
+    Collecting virtualenv!=20.0.0,!=20.0.1,!=20.0.2,!=20.0.3,!=20.0.4,!=20.0.5,!=20.0.6,!=20.0.7,>=16.0.0
+      Downloading virtualenv-20.13.0-py2.py3-none-any.whl (6.5 MB)
+    Collecting toml>=0.9.4
+      Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+    Collecting nodeenv>=0.11.1
+      Downloading nodeenv-1.6.0-py2.py3-none-any.whl (21 kB)
+    Collecting cfgv>=2.0.0
+      Downloading cfgv-3.3.1-py2.py3-none-any.whl (7.3 kB)
+    Collecting identify>=1.0.0
+      Downloading identify-2.4.4-py2.py3-none-any.whl (98 kB)
+    Requirement already satisfied: pyyaml==6.0 in /home/ha-srv/penv39/lib/python3.9/site-packages (from -c homeassistant/package_constraints.txt (line 29)) (6.0)
+    Collecting mypy-extensions<0.5.0,>=0.4.3
+      Downloading mypy_extensions-0.4.3-py2.py3-none-any.whl (4.5 kB)
+    Requirement already satisfied: typing-extensions>=3.7.4 in /home/ha-srv/penv39/lib/python3.9/site-packages (from mypy==0.910) (4.0.1)
+    Requirement already satisfied: pip<20.3,>=8.0.3 in /home/ha-srv/penv39/lib/python3.9/site-packages (from -c homeassistant/package_constraints.txt (line 25)) (20.2.4)
+    Collecting pyparsing!=3.0.5,>=2.0.2
+      Downloading pyparsing-3.0.6-py3-none-any.whl (97 kB)
+    Collecting distlib<1,>=0.3.1
+      Downloading distlib-0.3.4-py2.py3-none-any.whl (461 kB)
+    Collecting platformdirs<3,>=2
+      Downloading platformdirs-2.4.1-py3-none-any.whl (14 kB)
+    Building wheels for collected packages: tox-pip-version
+      Building wheel for tox-pip-version (setup.py) ... done
+      Created wheel for tox-pip-version: filename=tox_pip_version-0.0.7-py3-none-any.whl size=5076 sha256=78104c4b0bac915f35e1dc3df28e39d45869549bb9917a56052c97e8641d7605
+      Stored in directory: /home/ha-user/.cache/pip/wheels/93/75/24/063e6313635ace7e7828c5cf21379fee91030c8af3e36006ec
+    Successfully built tox-pip-version
+    Installing collected packages: py, filelock, pyparsing, packaging, pluggy, distlib, platformdirs, virtualenv, toml, tox, tox-pip-version, colorlog, nodeenv, cfgv, identify, pre-commit, mypy-extensions, mypy, stdlib-list, tqdm, pipdeptree
+    Successfully installed cfgv-3.3.1 colorlog-6.6.0 distlib-0.3.4 filelock-3.4.2 identify-2.4.4 mypy-0.910 mypy-extensions-0.4.3 nodeenv-1.6.0 packaging-21.3 pipdeptree-2.2.0 platformdirs-2.4.1 pluggy-1.0.0 pre-commit-2.17.0 py-1.11.0 pyparsing-3.0.6 stdlib-list-0.7.0 toml-0.10.2 tox-3.24.5 tox-pip-version-0.0.7 tqdm-4.49.0 virtualenv-20.13.0
+    WARNING: You are using pip version 20.2.4; however, version 21.3.1 is available.
+    You should consider upgrading via the '/home/ha-srv/penv39/bin/python3.9 -m pip install --upgrade pip' command.
+
+
+

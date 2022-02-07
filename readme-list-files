@@ -1,0 +1,32 @@
+
+
+ls -lrt readme* 
+
+-rw-rw-r-- 1 ha-user ha-user 8163 Jan 16 10:38 readme-install-core
+-rw-rw-r-- 1 ha-user ha-user 4686 Jan 16 10:57 readme-install-core-dev
+-rw-rw-r-- 1 ha-user ha-user 3620 Jan 16 10:49 readme-integration-1-example-1
+-rw-rw-r-- 1 ha-user ha-user 5527 Jan 16 12:52 readme-integration-1-example-2
+-rw-rw-r-- 1 ha-user ha-user 3631 Feb  5 17:58 readme-integration-2-example-1
+
+
+ls -lrt readme*
+
+-rw-rw-r--  1 ha-user ha-user 4686 Jan 16 10:57 readme-install-core-dev
+-rw-rw-r--  1 ha-user ha-user 5527 Jan 16 12:52 readme-integration-1-example-2
+-rw-rw-r--  1 ha-user ha-user 3631 Feb  5 17:58 readme-integration-2-example-1
+-rw-rw-r--  1 ha-user ha-user  395 Feb  5 18:03 readme-list-files
+-rw-rw-r--  1 ha-user ha-user 8341 Feb  5 18:47 readme-install-core
+-rw-rw-r--  1 ha-user ha-user 3700 Feb  5 18:51 readme-integration-1-example-1
+
+
+ls -lrt readme*
+
+-rw-rw-r-- 1 ha-user ha-user 4686 Jan 16 10:57 readme-install-core-dev
+-rw-rw-r-- 1 ha-user ha-user 5527 Jan 16 12:52 readme-integration-1-example-2
+-rw-rw-r-- 1 ha-user ha-user 3700 Feb  5 18:51 readme-integration-1-example-1
+-rw-rw-r-- 1 ha-user ha-user  857 Feb  5 18:54 readme-list-files
+-rw-rw-r-- 1 ha-user ha-user 9201 Feb  5 19:28 readme-install-core
+-rw-rw-r-- 1 ha-user ha-user 4476 Feb  6 16:23 readme-integration-2-example-1
+-rw-rw-r-- 1 ha-user ha-user 4808 Feb  6 18:52 readme-integration-2-example-2
+
+

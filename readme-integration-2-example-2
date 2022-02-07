@@ -1,0 +1,130 @@
+
+
+reference: 
+
+    https://community.home-assistant.io/t/tutorial-for-creating-a-custom-component/204793
+    https://aarongodfrey.dev/home%20automation/building_a_home_assistant_custom_component_part_1/
+    https://github.com/boralyl/cookiecutter-homeassistant-component
+    https://www.home-assistant.io/integrations/github/
+    https://github.com/boralyl/github-custom-component-tutorial/ -- each tutorial step in a branch
+
+
+previously created the initial code: 
+
+    $ cd github-custom
+    $ git init .
+    $ git commit -m 'initial code'
+
+  now, if place the custom_components/ directory in your ha config directory, 
+  it does not create any entities.
+
+
+implementing the component: ref _part_1
+
+  use github api: https://developer.github.com/v3/
+
+  brief: [1] add requirements to manifest.json
+         [2] add our platform configuration schema. this will define what values 
+             we will expect when a user adds this integration in their 
+             configuration.yaml .
+         [3] register all of our sensors with ha. this will be done in our 
+             async_setup_platform function.
+         [4] crate a new entity that represents the state and data  we want to 
+             collect about each github repository. this entity should also 
+             implement the async_update method that updates the data from github. 
+  note: we remove the async_setup function from __init__.py . because our implementation 
+        uses a platform, we can remove that code. platforms allows you to have 
+        multiple instances of the integration instead of just one. 
+
+
+adding requirements to manifest.json
+
+       "name": "Github Custom",
+    -  "requirements": []
+    +  "requirements": ["gidgethub[aiohttp]==4.1.1"]
+    }
+
+
+platform configuration schema
+
+    for our platform configuration schema, we are going to follow that of 
+    the official github integration. 
+
+    the basic example would look like: 
+
+        # Example configuration.yaml entry
+        sensor:
+          - platform: github_custom
+            access_token: !secret github_access_token
+            repositories:
+              - path: "home-assistant/core"
+                name: "Home Assistant Core"
+              - path: "boralyl/steam-wishlist"
+        
+          - platform: github_custom
+            url: https://my.enterprisegithubserver.com
+            access_token: !secret github_access_token
+            repositories:
+              - path: "company/some-repo"
+
+    we are not going to change anything here, so the schema will be 
+    identical to the official integration. see code 
+    in custom_components/github_custom/sensor.py
+
+        REPO_SCHEMA = vol.Schema( ....
+        PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend( ....
+
+    the above code is straightforward. 
+    we require an access token and a list of repos. 
+    each repo must have path key and optionally have a name key. 
+    we allow optionally a url key. 
+
+    the above code essentially extends the ha platform schema to add 
+    our domain github_custom to it with the schema above. it will handle 
+    the validation for us and display errors as appropriate. 
+
+
+register the sensors
+
+    the next step is to register all of our sensors. one sensor each repo. 
+    ha will look for setup_platfomr or async_setup_platform functions 
+    in your sensor.py . 
+
+    code .... async_setup_platform() in the same sensor.py 
+
+    the client session retrieved will take care of retrieving and closing 
+    the session for us. we initialize our github api client and create 
+    a GitHubRepoSensor for each repo that was specified in configuration.yaml .
+
+    the async_add_entities() handles adding and registering those sensors 
+    with ha. its second parameter update_before_add=True tells ha it should 
+    do a data update when the integration finishes setting up.  
+
+
+GitHubRepoSensor Entity and async_update
+
+    it extends homeassistant.helpers.engity.Entity . it implements 
+    most of the required logic for you. we define our own state property. 
+    for this sensor we use the first 7 characters of the commit sha. 
+    we also define a device_state_attributes property which returns 
+    attributes related to the state that can be accessed by automations 
+    and the lovelace UI. 
+
+    our customer sensor class must also specify either an update or async_update 
+    method for fetching the data to pupolate state and device_state_attributes.  
+    this will be called by SCAN_INTERVAL . 
+
+
+final code
+
+    get the 6 patches from the part1 branch of boralyl/github-custom-component-tutorial, 
+    apply to github_custom repo. 
+
+
+deploy: 
+
+    [1] copy custom_components/ into ~/.homeassistant/custom_components/
+    [2] add the configuration lines into ~/.homeassistant/configuration.yaml 
+    [3] run hass to start the ha-core
+
+

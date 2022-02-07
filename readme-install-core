@@ -1,0 +1,191 @@
+
+
+dependencies: 
+
+ reference required packages:  
+   links: 
+        https://developers.home-assistant.io/docs/architecture_index 
+          running parts of the stack: https://www.home-assistant.io/installation/linux -- install core
+
+   command: 
+    apt-get install python3 python3-dev python3-venv python3-pip libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential libopenjp2-7 libtiff5 libturbojpeg0 tzdata
+
+ actual command: 
+
+    apt-get install python3.9 python3.9-dev python3.9-venv libffi-dev libssl-dev libjpeg-dev zlib1g-dev autoconf build-essential libopenjp2-7 libtiff5 tzdata
+
+    The following NEW packages will be installed:
+      autoconf automake autotools-dev libffi-dev libjpeg-dev libjpeg-turbo8-dev libjpeg8-dev libpython3.9
+      libpython3.9-dev libpython3.9-minimal libpython3.9-stdlib python3.9 python3.9-dev python3.9-minimal
+      python3.9-venv
+
+
+venv:
+
+    /home/ha-srv/penv39$ source bin/activate
+    (penv39) /home/ha-srv/penv39$ pip list
+    Package       Version
+    ------------- -------
+    pip           20.0.2 
+    pkg-resources 0.0.0  
+    setuptools    44.0.0 
+
+    (penv39) /home/ha-srv/penv39$ pip install --upgrade pip setuptools wheel
+    Successfully installed pip-21.3.1 setuptools-60.5.0 wheel-0.37.1
+
+    (penv39) /home/ha-srv/penv39$ pip list
+    Package       Version
+    ------------- -------
+    pip           21.3.1
+    pkg_resources 0.0.0
+    setuptools    60.5.0
+    wheel         0.37.1
+
+
+check out source for 2021.12.9:
+
+    git clone https://github.com/home-assistant/core ha-core
+    cd ha-core
+    git checkout master
+    git log --stat
+
+  verify the master contains tag 2021.12.9 made on jan 10 of 2022.
+
+
+install from source
+
+(penv39) /home/ha-srv/ha-core$ pip install -e .
+Obtaining file:///home/ha-srv/ha-core
+  Installing build dependencies ... done
+  Checking if build backend supports build_editable ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Collecting certifi>=2021.5.30
+  Downloading certifi-2021.10.8-py2.py3-none-any.whl (149 kB)
+Collecting astral==2.2
+  Downloading astral-2.2-py2.py3-none-any.whl (30 kB)
+Collecting awesomeversion==21.11.0
+  Downloading awesomeversion-21.11.0-py3-none-any.whl (13 kB)
+Collecting voluptuous==0.12.2
+  Downloading voluptuous-0.12.2.tar.gz (48 kB)
+  Preparing metadata (setup.py) ... done
+Collecting cryptography==35.0.0
+  Downloading cryptography-35.0.0-cp36-abi3-manylinux_2_24_x86_64.whl (3.5 MB)
+Collecting PyJWT==2.1.0
+  Downloading PyJWT-2.1.0-py3-none-any.whl (16 kB)
+Collecting ciso8601==2.2.0
+  Downloading ciso8601-2.2.0.tar.gz (18 kB)
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Collecting jinja2==3.0.3
+  Downloading Jinja2-3.0.3-py3-none-any.whl (133 kB)
+Collecting attrs==21.2.0
+  Downloading attrs-21.2.0-py2.py3-none-any.whl (53 kB)
+Collecting async-timeout==4.0.0
+  Downloading async_timeout-4.0.0-py3-none-any.whl (6.1 kB)
+Collecting yarl==1.6.3
+  Downloading yarl-1.6.3-cp39-cp39-manylinux2014_x86_64.whl (315 kB)
+Collecting voluptuous-serialize==2.5.0
+  Downloading voluptuous_serialize-2.5.0-py3-none-any.whl (6.8 kB)
+Collecting pyyaml==6.0
+  Downloading PyYAML-6.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (661 kB)
+Collecting atomicwrites==1.4.0
+  Downloading atomicwrites-1.4.0-py2.py3-none-any.whl (6.8 kB)
+Collecting bcrypt==3.1.7
+  Downloading bcrypt-3.1.7-cp34-abi3-manylinux1_x86_64.whl (56 kB)
+Collecting pip<20.3,>=8.0.3
+  Downloading pip-20.2.4-py2.py3-none-any.whl (1.5 MB)
+Collecting requests==2.26.0
+  Downloading requests-2.26.0-py2.py3-none-any.whl (62 kB)
+Collecting httpx==0.21.0
+  Downloading httpx-0.21.0-py3-none-any.whl (83 kB)
+Collecting ifaddr==0.1.7
+  Downloading ifaddr-0.1.7-py2.py3-none-any.whl (10 kB)
+Collecting python-slugify==4.0.1
+  Downloading python-slugify-4.0.1.tar.gz (11 kB)
+  Preparing metadata (setup.py) ... done
+Collecting aiohttp==3.8.1
+  Downloading aiohttp-3.8.1-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.2 MB)
+Collecting frozenlist>=1.1.1
+  Downloading frozenlist-1.2.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (203 kB)
+Collecting multidict<7.0,>=4.5
+  Downloading multidict-5.2.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (174 kB)
+Collecting charset-normalizer<3.0,>=2.0
+  Downloading charset_normalizer-2.0.10-py3-none-any.whl (39 kB)
+Collecting aiosignal>=1.1.2
+  Downloading aiosignal-1.2.0-py3-none-any.whl (8.2 kB)
+Collecting pytz
+  Downloading pytz-2021.3-py2.py3-none-any.whl (503 kB)
+Collecting typing-extensions>=3.6.5
+  Downloading typing_extensions-4.0.1-py3-none-any.whl (22 kB)
+Collecting cffi>=1.1
+  Downloading cffi-1.15.0-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (444 kB)
+Collecting six>=1.4.1
+  Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting httpcore<0.15.0,>=0.14.0
+  Downloading httpcore-0.14.4-py3-none-any.whl (59 kB)
+Collecting rfc3986[idna2008]<2,>=1.3
+  Downloading rfc3986-1.5.0-py2.py3-none-any.whl (31 kB)
+Collecting sniffio
+  Downloading sniffio-1.2.0-py3-none-any.whl (10 kB)
+Collecting MarkupSafe>=2.0
+  Downloading MarkupSafe-2.0.1-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (30 kB)
+Collecting text-unidecode>=1.3
+  Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.8-py2.py3-none-any.whl (138 kB)
+Collecting idna<4,>=2.5
+  Downloading idna-3.3-py3-none-any.whl (61 kB)
+Collecting pycparser
+  Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+Collecting anyio==3.*
+  Downloading anyio-3.5.0-py3-none-any.whl (79 kB)
+Collecting h11<0.13,>=0.11
+  Downloading h11-0.12.0-py3-none-any.whl (54 kB)
+Building wheels for collected packages: ciso8601, python-slugify, voluptuous
+  Building wheel for ciso8601 (pyproject.toml) ... done
+  Created wheel for ciso8601: filename=ciso8601-2.2.0-cp39-cp39-linux_x86_64.whl size=37655 sha256=3673dd4dfe7be9026ef4073a8fe798e44b3da3e2d681fce24de5d92f1596597e
+  Stored in directory: /home/ha-user/.cache/pip/wheels/eb/ef/30/b91c5119b2581a9d66d18f827d53432f85417ffab180f3e5b8
+  Building wheel for python-slugify (setup.py) ... done
+  Created wheel for python-slugify: filename=python_slugify-4.0.1-py2.py3-none-any.whl size=6780 sha256=8f1a44154582282c8b507cabe59c2a44ded3bffe4099f287baf5d4b65af8278b
+  Stored in directory: /home/ha-user/.cache/pip/wheels/84/5b/00/3ebff44b1e0a380d959960828803a9486ff2433728cceff666
+  Building wheel for voluptuous (setup.py) ... done
+  Created wheel for voluptuous: filename=voluptuous-0.12.2-py3-none-any.whl size=29563 sha256=8cba0fe8060a69a2c4816efdbf0fa5162ba0b2c5d54ed0822bad53f7c4201a42
+  Stored in directory: /home/ha-user/.cache/pip/wheels/50/80/ab/ab37c8824a928c42a261bce71227504b6ef12276ef28f0667b
+Successfully built ciso8601 python-slugify voluptuous
+Installing collected packages: sniffio, idna, typing-extensions, rfc3986, pycparser, multidict, h11, frozenlist, certifi, anyio, yarl, voluptuous, urllib3, text-unidecode, six, pytz, MarkupSafe, httpcore, charset-normalizer, cffi, attrs, async-timeout, aiosignal, voluptuous-serialize, requests, pyyaml, python-slugify, PyJWT, pip, jinja2, ifaddr, httpx, cryptography, ciso8601, bcrypt, awesomeversion, atomicwrites, astral, aiohttp, homeassistant
+  Attempting uninstall: pip
+    Found existing installation: pip 21.3.1
+    Uninstalling pip-21.3.1:
+      Successfully uninstalled pip-21.3.1
+  Running setup.py develop for homeassistant
+Successfully installed MarkupSafe-2.0.1 PyJWT-2.1.0 aiohttp-3.8.1 aiosignal-1.2.0 anyio-3.5.0 astral-2.2 async-timeout-4.0.0 atomicwrites-1.4.0 attrs-21.2.0 awesomeversion-21.11.0 bcrypt-3.1.7 certifi-2021.10.8 cffi-1.15.0 charset-normalizer-2.0.10 ciso8601-2.2.0 cryptography-35.0.0 frozenlist-1.2.0 h11-0.12.0 homeassistant-2021.12.9 httpcore-0.14.4 httpx-0.21.0 idna-3.3 ifaddr-0.1.7 jinja2-3.0.3 multidict-5.2.0 pip-20.2.4 pycparser-2.21 python-slugify-4.0.1 pytz-2021.3 pyyaml-6.0 requests-2.26.0 rfc3986-1.5.0 six-1.16.0 sniffio-1.2.0 text-unidecode-1.3 typing-extensions-4.0.1 urllib3-1.26.8 voluptuous-0.12.2 voluptuous-serialize-2.5.0 yarl-1.6.3
+
+
+how to run:
+
+ development run: 
+  reference: https://developers.home-assistant.io/docs/development_environment
+  run if the config directory stores the ha configurations: 
+
+    hass -c config 
+
+ normal run: 
+  reference: https://www.home-assistant.io/installation/linux
+  run, create ~/.homeassistant configuration directory, start on http://<ip>:8123, 
+       the first time it downloads dependency libraries in usually less than 10 minutes
+
+    hass
+
+
+installation comparison
+
+  the core installation comes with features: automations, lovelace, integrations, blueprints, 
+  but not with features: use container, supervisor, add-ons, backups, managed os
+
+  other installations are: os, supervised, container, in contrast to core 
+
+  the supervised has features: use container, supervisor, add-ons, backups, but not managed os. 
+
+

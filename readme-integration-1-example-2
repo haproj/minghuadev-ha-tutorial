@@ -1,0 +1,174 @@
+
+
+install the dev dependencies
+see readme-install-core-dev file.
+
+
+run the following to create the integration: 
+
+(penv39) ha-user@:/home/ha-srv/ha-core$ touch xstep2
+(penv39) ha-user@:/home/ha-srv/ha-core$ python3 -m script.scaffold integration
+
+What is the domain?
+> hello_state
+
+What is the name of your integration?
+> paulus
+
+What is your GitHub handle?
+> @ha-warmup
+
+What PyPI package and version do you depend on? Leave blank for none.
+>
+
+How will your integration gather data?
+
+Valid values are assumed_state, calculated, cloud_polling, cloud_push, local_polling, local_push
+
+More info @ https://developers.home-assistant.io/docs/creating_integration_manifest#iot-class
+
+> local_polling
+
+Does Home Assistant need the user to authenticate to control the device/service? (yes/no) [yes]
+> no
+
+Is the device/service discoverable on the local network? (yes/no) [no]
+> no
+
+Can the user authenticate the device using OAuth2? (yes/no) [no]
+> no
+
+Scaffolding integration for the hello_state integration...
+Writing tests/components/hello_state/__init__.py
+Writing homeassistant/components/hello_state/manifest.json
+Writing homeassistant/components/hello_state/const.py
+Writing homeassistant/components/hello_state/__init__.py
+Updating hello_state manifest: {'codeowners': ['@ha-warmup'], 'iot_class': 'local_polling'}
+
+Scaffolding config_flow for the hello_state integration...
+Writing homeassistant/components/hello_state/config_flow.py
+Writing homeassistant/components/hello_state/const.py
+Writing homeassistant/components/hello_state/__init__.py
+Writing tests/components/hello_state/test_config_flow.py
+Updating hello_state manifest: {'config_flow': True}
+Updating hello_state strings: ['config']
+
+Running hassfest to pick up new information.
+Running gen_requirements_all to pick up new information.
+Running script/translations_develop to pick up new translation strings.
+**************************
+Integration code has been generated
+
+Added the following files:
+- homeassistant/components/hello_state/__init__.py
+- homeassistant/components/hello_state/config_flow.py
+- homeassistant/components/hello_state/manifest.json
+- homeassistant/components/hello_state/const.py
+
+Added the following tests:
+- tests/components/hello_state/test_config_flow.py
+
+The next step is to look at the files and deal with all areas marked as TODO.
+
+
+check for new files: 
+
+(penv39) ha-user@:/home/ha-srv/ha-core$ find . -newer xstep2 -type f | grep -v '\.pyc'
+./homeassistant/package_constraints.txt
+./homeassistant/components/hello_state/config_flow.py
+./homeassistant/components/hello_state/manifest.json
+./homeassistant/components/hello_state/translations/en.json
+./homeassistant/components/hello_state/const.py
+./homeassistant/components/hello_state/strings.json
+./homeassistant/components/hello_state/__init__.py
+./homeassistant/generated/ssdp.py
+./homeassistant/generated/zeroconf.py
+./homeassistant/generated/dhcp.py
+./homeassistant/generated/usb.py
+./homeassistant/generated/mqtt.py
+./homeassistant/generated/config_flows.py
+./mypy.ini
+./CODEOWNERS
+./build/translations-download/en.json
+./requirements.txt
+./tests/components/hello_state/test_config_flow.py
+./tests/components/hello_state/__init__.py
+./requirements_test_pre_commit.txt
+./requirements_all.txt
+./requirements_test_all.txt
+
+(penv39) ha-user@:/home/ha-srv/ha-core$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   CODEOWNERS
+        modified:   homeassistant/generated/config_flows.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        homeassistant/components/hello_state/
+        tests/components/hello_state/
+        xstep0
+        xstep1
+        xstep2
+
+(penv39) ha-user@:/home/ha-srv/ha-core$ git diff
+diff --git a/CODEOWNERS b/CODEOWNERS
+index 29a22efa45..6bcac2c28b 100644
+--- a/CODEOWNERS
++++ b/CODEOWNERS
+@@ -215,6 +215,7 @@ homeassistant/components/habitica/* @ASMfreaK @leikoilja
+ homeassistant/components/harmony/* @ehendrix23 @bramkragten @bdraco @mkeesey @Aohzan
+ homeassistant/components/hassio/* @home-assistant/supervisor
+ homeassistant/components/heatmiser/* @andylockran
++homeassistant/components/hello_state/* @ha-warmup
+ homeassistant/components/heos/* @andrewsayre
+ homeassistant/components/here_travel_time/* @eifinger
+ homeassistant/components/hikvision/* @mezz64
+diff --git a/homeassistant/generated/config_flows.py b/homeassistant/generated/config_flows.py
+index c2648ec04c..0efece3b7b 100644
+--- a/homeassistant/generated/config_flows.py
++++ b/homeassistant/generated/config_flows.py
+@@ -121,6 +121,7 @@ FLOWS = [
+     "habitica",
+     "hangouts",
+     "harmony",
++    "hello_state",
+     "heos",
+     "hisense_aehw4a1",
+     "hive",
+
+
+add hello_state to the configuration.yaml:
+
+$ cat ~/.homeassistant/configuration.yaml | grep -A2 -B2 hello_state
+  - platform: google_translate
+
+# my hello_state
+hello_state:
+
+group: !include groups.yaml
+
+
+add the component source file: 
+$ mkdir -p ~/.homeassistant/custom_components/hello_state
+$ cat ~/.homeassistant/custom_components/hello_state/__init__.py
+DOMAIN = "hello_state"
+
+def setup(hass, config):
+    hass.states.set("hello_state.world", "Paulus")
+
+    # Return boolean to indicate that initialization was successful.
+    return True
+
+
+restart the core. 
+
+the integration can be seen in the "configuration/settings/info"
+as "paulus/hello_state". 
+
+
+

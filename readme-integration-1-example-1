@@ -1,0 +1,109 @@
+
+reference: https://developers.home-assistant.io/docs/creating_component_index
+
+
+(penv39)  /home/ha-srv/ha-core$ touch xstep0
+(penv39)  /home/ha-srv/ha-core$ python3 -m script.scaffold integration
+
+What is the domain?
+> hello_state
+
+What is the name of your integration?
+> Paulus
+
+What is your GitHub handle?
+> @ha-warmup
+
+What PyPI package and version do you depend on? Leave blank for none.
+>
+
+How will your integration gather data?
+Valid values are assumed_state, calculated, cloud_polling, cloud_push, local_polling, local_push
+> local_polling
+
+Does Home Assistant need the user to authenticate to control the device/service? (yes/no) [yes]
+> no
+
+Is the device/service discoverable on the local network? (yes/no) [no]
+> yes
+
+Can the user authenticate the device using OAuth2? (yes/no) [no]
+> no
+
+Scaffolding integration for the hello_state integration...
+Writing tests/components/hello_state/__init__.py
+Writing homeassistant/components/hello_state/manifest.json
+Writing homeassistant/components/hello_state/const.py
+Writing homeassistant/components/hello_state/__init__.py
+Updating hello_state manifest: {'codeowners': ['@ha-warmup'], 'iot_class': 'local_polling'}
+
+Scaffolding config_flow_discovery for the hello_state integration...
+Writing homeassistant/components/hello_state/config_flow.py
+Writing homeassistant/components/hello_state/const.py
+Writing homeassistant/components/hello_state/__init__.py
+Updating hello_state manifest: {'config_flow': True}
+Updating hello_state strings: ['config']
+
+Running hassfest to pick up new information.
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/ha-srv/ha-core/script/hassfest/__main__.py", line 7, in <module>
+    from . import (
+  File "/home/ha-srv/ha-core/script/hassfest/requirements.py", line 13, in <module>
+    from stdlib_list import stdlib_list
+ModuleNotFoundError: No module named 'stdlib_list'
+
+Running gen_requirements_all to pick up new information.
+
+Running script/translations_develop to pick up new translation strings.
+
+**************************
+Integration code has been generated
+
+Added the following files:
+- homeassistant/components/hello_state/config_flow.py
+- homeassistant/components/hello_state/__init__.py
+- homeassistant/components/hello_state/const.py
+- homeassistant/components/hello_state/manifest.json
+
+The next step is to look at the files and deal with all areas marked as TODO.
+
+
+(penv39) ha-user@:/home/ha-srv/ha-core$ find . -newer xstep0 -type f | grep -v '\.pyc'
+./homeassistant/package_constraints.txt
+./homeassistant/components/hello_state/config_flow.py
+./homeassistant/components/hello_state/manifest.json
+./homeassistant/components/hello_state/translations/en.json
+./homeassistant/components/hello_state/const.py
+./homeassistant/components/hello_state/strings.json
+./homeassistant/components/hello_state/__init__.py
+./build/translations-download/en.json
+./.git/index
+./requirements.txt
+./tests/components/hello_state/__init__.py
+./requirements_test_pre_commit.txt
+./requirements_all.txt
+./requirements_test_all.txt
+
+
+(penv39) ha-user@:/home/ha-srv/ha-core$ rm -r homeassistant/components/hello_state
+(penv39) ha-user@:/home/ha-srv/ha-core$ rm -r tests/components/hello_state/
+(penv39) ha-user@:/home/ha-srv/ha-core$ rm -r build
+
+
+(penv39) ha-user@:/home/ha-srv/ha-core$ find . -newer xstep0 -type f | grep -v '\.pyc'
+./homeassistant/package_constraints.txt
+./.git/index
+./requirements.txt
+./requirements_test_pre_commit.txt
+./requirements_all.txt
+./requirements_test_all.txt
+
+
+$ touch xstep1
+
+
+
